@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Video PiP Shortcut",
+  "version": "1.2",
+  "description": "Adds a Picture-in-Picture button overlay to videos.",
+  "permissions": ["scripting"],
+  "host_permissions": ["*://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
