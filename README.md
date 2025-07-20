@@ -39,6 +39,8 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / 
 * **Better compatibility with websites like Reddit, Twitch, Kick, etc. (maybe even with streaming services) 
 * **Performance improvements
 
+---
+
 ## 🛠 Installation
 
 1. Download or clone the repo.  
