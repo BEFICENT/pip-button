@@ -1,0 +1,6 @@
+body{font-family:sans-serif;margin:0;padding:1rem;max-width:26rem}
+label{display:block;margin:.5rem 0}
+fieldset{border:1px solid #ccc;padding:.5rem .8rem;margin:.7rem 0}
+legend{font-size:.9rem;font-weight:600}
+select,input[type=text]{margin-left:.4rem}
+small{color:#666}
