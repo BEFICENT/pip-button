@@ -1,12 +1,12 @@
-# Video PiP Shortcut — v 1.9    
+# Video PiP Shortcut — v 1.10
 The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / Brave / Edge.
 
 > **First major update since v 1.3**  
-> Everything below is *new or has been improved* in v 1.9.
+> Everything below is *new or has been improved* in v 1.10.
 
 ---
 
-## 🚀 What’s new in v 1.9
+## 🚀 What’s new in v 1.10
 
 | Area | Added / Changed |
 |------|-----------------|

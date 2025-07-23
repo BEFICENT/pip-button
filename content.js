@@ -136,7 +136,22 @@ function addBtn(video) {
     } catch (e) { console.error(e); }
   });
 
-  window.addEventListener("resize", () => reposition(btn));
+  // Hide icon in fullscreen mode
+  const handleFullscreenChange = () => {
+    const inFullscreen = document.fullscreenElement || document.webkitFullscreenElement || video.webkitDisplayingFullscreen;
+    if (inFullscreen) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'block';
+      setOpacity();
+    }
+  };
+  document.addEventListener('fullscreenchange', handleFullscreenChange);
+  document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+  video.addEventListener('webkitbeginfullscreen', handleFullscreenChange);
+  video.addEventListener('webkitendfullscreen', handleFullscreenChange);
+  // Initial check
+  handleFullscreenChange();
 
   document.body.appendChild(btn);
   reposition(btn);

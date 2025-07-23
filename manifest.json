@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Video PiP Shortcut",
   "description": "Adds a Picture‑in‑Picture overlay button and a customisable keyboard shortcut to HTML5 videos.",
-  "version": "1.9",
+  "version": "1.10",
   "permissions": ["storage"],
   "host_permissions": ["*://*/*"],
   "options_page": "options.html",
