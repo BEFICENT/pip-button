@@ -1,7 +1,22 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>Video PiP Shortcut – Options</title>
-<link rel="stylesheet" href="settings.css">
-<h2>Video PiP Shortcut – Settings</h2>
-<div id="ui"></div>
-<script src="settings.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Video PiP Shortcut — Settings</title>
+    <link rel="stylesheet" href="settings.css">
+  </head>
+  <body class="options-page">
+    <header class="page-header">
+      <img src="icon.png" alt="" width="44" height="44">
+      <div>
+        <h1>Video PiP Shortcut</h1>
+        <p>Settings sync across your Chromium browsers.</p>
+      </div>
+    </header>
+    <main id="ui"></main>
+    <p id="save-status" class="save-status" role="status" aria-live="polite" hidden></p>
+    <script src="settings-config.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>

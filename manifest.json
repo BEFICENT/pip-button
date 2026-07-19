@@ -2,9 +2,8 @@
   "manifest_version": 3,
   "name": "Video PiP Shortcut",
   "description": "Adds a Picture‑in‑Picture overlay button and a customisable keyboard shortcut to HTML5 videos.",
-  "version": "1.10",
+  "version": "1.11",
   "permissions": ["storage"],
-  "host_permissions": ["*://*/*"],
   "options_page": "options.html",
   "action": {
     "default_icon": {
@@ -17,7 +16,16 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["content.js"]
+      "js": ["settings-config.js", "content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png"],
+      "matches": ["<all_urls>"]
     }
   ],
   "icons": {

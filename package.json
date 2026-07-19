@@ -1,0 +1,14 @@
+{
+  "name": "video-pip-shortcut",
+  "version": "1.11.0",
+  "private": true,
+  "description": "Development checks for the Video PiP Shortcut Chromium extension.",
+  "scripts": {
+    "check": "node --check settings-config.js && node --check content.js && node --check settings.js && node scripts/validate-manifest.js",
+    "test": "npm run check && playwright test",
+    "test:youtube": "npm run check && playwright test --config=playwright.youtube.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
+}

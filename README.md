@@ -1,23 +1,25 @@
-# Video PiP Shortcut — v 1.10
+# Video PiP Shortcut — v 1.11
 The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / Brave / Edge.
 
-> **First major update since v 1.3**  
-> Everything below is *new or has been improved* in v 1.10.
+> **Compatibility and reliability update**
+> Everything below is *new or has been improved* in v 1.11.
 
 ---
 
-## 🚀 What’s new in v 1.10
+## 🚀 What’s new in v 1.11
 
 | Area | Added / Changed |
 |------|-----------------|
-| **Overlay button** | • Works on videos that appear later <br>• 3 **icon sizes** – Small 40 px, Medium 50 px, Large 60 px |
-| **Hover behaviour** | Choose how the icon appears: <br>  ➊ *Show only on icon hover* <br>  ➋ *Fade until icon hover* (default) <br>  ➌ *Always visible* |
+| **Overlay button** | • Isolated from website styles <br>• Stays centred while scrolling <br>• Cleans up and recovers as videos change |
+| **Compatibility** | Works in matching child frames and handles dynamic single-page sites more reliably |
+| **Hover behaviour** | Choose how the icon appears: <br>  ➊ *Show on video hover* <br>  ➋ *Fade on video hover* (default) <br>  ➌ *Always visible* |
 | **Positioning** | 9 presets (centre + 8 compass points) |
 | **Edge margin** | Quick dropdown (0 – 400 px) keeps the icon from hugging the edge |
 | **Keyboard shortcut** | Pick any key + Alt / Ctrl / Shift / Meta<br>(defaults to **Alt + P**) |
 | **Click feedback** | Optional zoom‑flash animation |
 | **One‑click PiP toggle** | Clicking the overlay toggles PiP on/off for that video |
 | **Settings popup** | All options live‑update from the toolbar popup—no page reloads |
+| **Quality** | Automated Chromium coverage plus an opt-in live YouTube and ad-blocking test |
 
 ---
 
@@ -27,17 +29,17 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / 
 * **Instant PiP toggle** – click the icon or use the global shortcut  
 * **Nine positions** + **edge margin** presets  
 * **Icon size presets** (small / medium / large)  
-* **Three hover styles** (hover‑only, fade, always)  
+* **Three hover styles** (show on hover, fade, always)
 * **Custom shortcut** – pick any key + modifiers  
 * **Click animation** (can be turned off)  
 * All settings **sync via Chrome Sync** and update live across tabs
 
 ---
 
-## ✨ Future Improvements
+## 🔭 Future Improvements
 
-* **Better compatibility with websites like Reddit, Twitch, Kick, etc. (maybe even with streaming services) 
-* **Performance improvements
+* Better compatibility with unusual closed-shadow-root video players
+* Site-specific testing for major streaming platforms
 
 ---
 
@@ -67,6 +69,27 @@ Open the toolbar popup (or right‑click → *Options*) to tweak:
 | **Shortcut** | Any key + Alt / Ctrl / Shift / Meta |
 
 Settings are saved instantly and applied to every open tab.
+
+---
+
+## 🧪 Development
+
+Install the test dependency and run the complete static and Chromium suite:
+
+```bash
+npm install
+npm test
+```
+
+The browser tests load the unpacked extension into an isolated Playwright Chromium profile. They cover real PiP entry and exit, dynamic videos, cleanup, positioning, settings persistence, enable/disable behaviour, and iframe injection.
+
+Run the opt-in live YouTube compatibility test separately:
+
+```bash
+npm run test:youtube
+```
+
+This test loads Google’s documented sample YouTube player with a small test-only Manifest V3 ad blocker enabled. It verifies that ad requests are blocked before exercising the overlay and real PiP entry and exit. Because it depends on YouTube and an internet connection, it is intentionally excluded from the deterministic default suite.
 
 ---
 

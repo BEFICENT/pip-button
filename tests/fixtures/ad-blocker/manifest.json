@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "PiP Test Ad Blocker",
+  "version": "1.0.0",
+  "description": "Test-only blocker for common advertising endpoints.",
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": ["<all_urls>"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "test_ads",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
+
