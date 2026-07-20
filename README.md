@@ -119,9 +119,15 @@ Create the same minimal ZIP attached to GitHub releases:
 npm run package:extension
 ```
 
-The package command copies only the runtime files required by the extension and writes the versioned cross-browser archive to `dist/`. It can be loaded unpacked by Chromium browsers, temporarily loaded by Firefox for development, or submitted to Mozilla for signing.
+The package command copies only the runtime files required by the extension, together with its license, and writes the versioned cross-browser archive to `dist/`. It can be loaded unpacked by Chromium browsers, temporarily loaded by Firefox for development, or submitted to Mozilla for signing.
 
 ---
+
+## License
+
+The source code is licensed under the [MIT License](LICENSE).
+
+The bundled icon files are third-party assets and are not covered by the MIT License. Their original attribution and license terms are noted below.
 
 ## 🖼 Icon credit
 

@@ -18,6 +18,7 @@ $releaseFiles = @(
     "icon-32.png",
     "icon-48.png",
     "icon.png",
+    "LICENSE",
     "manifest.json",
     "options.html",
     "popup.html",
