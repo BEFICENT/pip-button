@@ -1,0 +1,55 @@
+name: Release extension
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out tagged commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run checks and browser tests
+        run: npm test
+
+      - name: Verify tag matches manifest version
+        shell: pwsh
+        run: |
+          $tagVersion = "${{ github.ref_name }}".TrimStart("v")
+          $manifestVersion = (Get-Content -Raw manifest.json | ConvertFrom-Json).version
+          if ($tagVersion -ne $manifestVersion) {
+            throw "Tag version $tagVersion does not match manifest version $manifestVersion."
+          }
+
+      - name: Package extension
+        shell: pwsh
+        run: ./scripts/package-extension.ps1
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/video-pip-shortcut-$GITHUB_REF_NAME.zip" \
+            --title "Video PiP Shortcut $GITHUB_REF_NAME" \
+            --generate-notes \
+            --verify-tag

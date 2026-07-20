@@ -45,10 +45,24 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / 
 
 ## 🛠 Installation
 
-1. Download or clone the repo.  
-2. Open **chrome://extensions** (or brave://extensions, edge://extensions).  
-3. Enable **Developer mode**.  
-4. Click **Load unpacked** and select the extension folder.  
+### Chrome Web Store
+
+Install [Video PiP Shortcut from the Chrome Web Store](https://chromewebstore.google.com/detail/video-pip-shortcut/fichfjcindepopbfmbgkgnfogknlpgld) for automatic updates.
+
+### GitHub release
+
+1. Open the [latest GitHub release](https://github.com/BEFICENT/pip-button/releases/latest).
+2. Download the release asset named `video-pip-shortcut-vX.Y.zip`—not GitHub's automatically generated "Source code" archives.
+3. Extract the downloaded ZIP to a permanent folder.
+4. Open **chrome://extensions** (or **brave://extensions**, **edge://extensions**).
+5. Enable **Developer mode**.
+6. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
+
+Unpacked installations do not update automatically. Download the latest release, replace the extracted files, and click the extension's **Reload** button when upgrading.
+
+### From source
+
+Clone the repository, then follow steps 4–6 above and select the repository root.
 
 Hover any video → click the 🎬 icon **or** press **Alt + P**  
 (default shortcut—change it any time).
@@ -90,6 +104,14 @@ npm run test:youtube
 ```
 
 This test loads Google’s documented sample YouTube player with a small test-only Manifest V3 ad blocker enabled. It verifies that ad requests are blocked before exercising the overlay and real PiP entry and exit. Because it depends on YouTube and an internet connection, it is intentionally excluded from the deterministic default suite.
+
+Create the same minimal ZIP attached to GitHub releases:
+
+```bash
+npm run package:extension
+```
+
+The package command copies only the runtime files required by the extension and writes the versioned archive to `dist/`.
 
 ---
 

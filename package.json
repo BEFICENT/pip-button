@@ -5,6 +5,7 @@
   "description": "Development checks for the Video PiP Shortcut Chromium extension.",
   "scripts": {
     "check": "node --check settings-config.js && node --check content.js && node --check settings.js && node scripts/validate-manifest.js",
+    "package:extension": "pwsh -NoProfile -File scripts/package-extension.ps1",
     "test": "npm run check && playwright test",
     "test:youtube": "npm run check && playwright test --config=playwright.youtube.config.js"
   },
