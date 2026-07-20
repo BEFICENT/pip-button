@@ -2,7 +2,7 @@ const { defineConfig } = require("@playwright/test");
 
 module.exports = defineConfig({
   testDir: "./tests",
-  testIgnore: ["**/*.live.spec.js", "**/*.firefox.spec.js"],
+  testMatch: "**/*.firefox.spec.js",
   timeout: 30_000,
   workers: 1,
   use: {

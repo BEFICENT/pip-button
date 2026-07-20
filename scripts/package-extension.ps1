@@ -14,6 +14,9 @@ if (-not $manifest.version) {
 
 $releaseFiles = @(
     "content.js",
+    "icon-16.png",
+    "icon-32.png",
+    "icon-48.png",
     "icon.png",
     "manifest.json",
     "options.html",

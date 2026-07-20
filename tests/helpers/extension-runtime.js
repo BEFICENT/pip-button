@@ -6,6 +6,9 @@ const { chromium } = require("@playwright/test");
 const projectRoot = path.resolve(__dirname, "..", "..");
 const extensionFiles = [
   "content.js",
+  "icon-16.png",
+  "icon-32.png",
+  "icon-48.png",
   "icon.png",
   "manifest.json",
   "options.html",
@@ -62,4 +65,3 @@ async function launchExtensionRuntime({ additionalExtensionPaths = [] } = {}) {
 }
 
 module.exports = { launchExtensionRuntime };
-

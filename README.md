@@ -1,25 +1,20 @@
-# Video PiP Shortcut — v 1.11
-The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / Brave / Edge.
+# Video PiP Shortcut — v 1.12
+The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chromium and Firefox-based desktop browsers.
 
-> **Compatibility and reliability update**
-> Everything below is *new or has been improved* in v 1.11.
+> **Firefox compatibility update**
+> v1.12 adds desktop Firefox/Gecko support while preserving the Chromium build.
 
 ---
 
-## 🚀 What’s new in v 1.11
+## 🚀 What’s new in v 1.12
 
 | Area | Added / Changed |
 |------|-----------------|
-| **Overlay button** | • Isolated from website styles <br>• Stays centred while scrolling <br>• Cleans up and recovers as videos change |
-| **Compatibility** | Works in matching child frames and handles dynamic single-page sites more reliably |
-| **Hover behaviour** | Choose how the icon appears: <br>  ➊ *Show on video hover* <br>  ➋ *Fade on video hover* (default) <br>  ➌ *Always visible* |
-| **Positioning** | 9 presets (centre + 8 compass points) |
-| **Edge margin** | Quick dropdown (0 – 400 px) keeps the icon from hugging the edge |
-| **Keyboard shortcut** | Pick any key + Alt / Ctrl / Shift / Meta<br>(defaults to **Alt + P**) |
-| **Click feedback** | Optional zoom‑flash animation |
-| **One‑click PiP toggle** | Clicking the overlay toggles PiP on/off for that video |
-| **Settings popup** | All options live‑update from the toolbar popup—no page reloads |
-| **Quality** | Automated Chromium coverage plus an opt-in live YouTube and ad-blocking test |
+| **Firefox support** | Supports desktop Firefox and Firefox-based browsers using Gecko 153 or newer |
+| **One package** | The same release ZIP is valid for Chromium development installs and Mozilla signing |
+| **Privacy declaration** | Declares no data collection using Firefox's built-in manifest disclosure |
+| **Icons** | Adds correctly sized 16, 32, and 48 pixel browser icons instead of relying on browser scaling |
+| **Quality** | Adds Firefox-engine coverage and Mozilla add-on linting alongside the Chromium and live YouTube suites |
 
 ---
 
@@ -48,6 +43,12 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chrome / 
 ### Chrome Web Store
 
 Install [Video PiP Shortcut from the Chrome Web Store](https://chromewebstore.google.com/detail/video-pip-shortcut/fichfjcindepopbfmbgkgnfogknlpgld) for automatic updates.
+
+### Firefox and Firefox-based browsers
+
+Firefox support requires **Firefox/Gecko 153 or newer**, where Mozilla first exposed the standard scripted video Picture-in-Picture API on desktop. Firefox-based browsers must incorporate that Gecko version before the extension can trigger PiP.
+
+For development builds, use a Firefox-compatible release ZIP (**v1.12 or newer**), open **about:debugging**, choose **This Firefox**, click **Load Temporary Add-on**, and select the ZIP. Temporary add-ons are removed when Firefox restarts. Permanent installation in standard Firefox requires a Mozilla-signed package; the same release ZIP is prepared for submission to addons.mozilla.org.
 
 ### GitHub release
 
@@ -88,14 +89,21 @@ Settings are saved instantly and applied to every open tab.
 
 ## 🧪 Development
 
-Install the test dependency and run the complete static and Chromium suite:
+Install the test dependencies and run the complete static, Chromium, Firefox-engine, and Firefox add-on validation suites:
 
 ```bash
 npm install
 npm test
 ```
 
-The browser tests load the unpacked extension into an isolated Playwright Chromium profile. They cover real PiP entry and exit, dynamic videos, cleanup, positioning, settings persistence, enable/disable behaviour, and iframe injection.
+The Chromium tests load the unpacked extension into an isolated profile. They cover real PiP entry and exit, dynamic videos, cleanup, positioning, settings persistence, enable/disable behaviour, and iframe injection. The Firefox suite exercises the overlay and PiP interaction in Playwright's Firefox engine, while Mozilla's add-ons linter validates the Firefox manifest and packaged APIs.
+
+Run only the Firefox-focused checks:
+
+```bash
+npm run check:firefox
+npm run test:firefox
+```
 
 Run the opt-in live YouTube compatibility test separately:
 
@@ -111,7 +119,7 @@ Create the same minimal ZIP attached to GitHub releases:
 npm run package:extension
 ```
 
-The package command copies only the runtime files required by the extension and writes the versioned archive to `dist/`.
+The package command copies only the runtime files required by the extension and writes the versioned cross-browser archive to `dist/`. It can be loaded unpacked by Chromium browsers, temporarily loaded by Firefox for development, or submitted to Mozilla for signing.
 
 ---
 

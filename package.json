@@ -1,15 +1,19 @@
 {
   "name": "video-pip-shortcut",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "private": true,
-  "description": "Development checks for the Video PiP Shortcut Chromium extension.",
+  "description": "Development checks for the cross-browser Video PiP Shortcut extension.",
   "scripts": {
     "check": "node --check settings-config.js && node --check content.js && node --check settings.js && node scripts/validate-manifest.js",
+    "check:firefox": "npm run package:extension && node scripts/lint-firefox.js",
     "package:extension": "pwsh -NoProfile -File scripts/package-extension.ps1",
-    "test": "npm run check && playwright test",
+    "test": "npm run check && npm run check:firefox && npm run test:chromium && npm run test:firefox",
+    "test:chromium": "playwright test",
+    "test:firefox": "playwright test --config=playwright.firefox.config.js",
     "test:youtube": "npm run check && playwright test --config=playwright.youtube.config.js"
   },
   "devDependencies": {
-    "@playwright/test": "1.61.1"
+    "@playwright/test": "1.61.1",
+    "addons-linter": "10.9.0"
   }
 }
