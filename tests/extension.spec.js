@@ -97,6 +97,36 @@ test("owns one isolated overlay per video and cleans up dynamic videos", async (
   await page.close();
 });
 
+test("ignores YouTube hover previews and removes an overlay if a video becomes one", async () => {
+  const page = await browserContext.newPage();
+  await page.route("https://www.youtube.com/pip-preview-test", (route) => route.fulfill({
+    contentType: "text/html",
+    body: fixtureDocument(`
+      <video id="main-video" controls></video>
+      <ytd-video-preview id="preview">
+        <div id="inline-preview-player">
+          <video id="preview-video"></video>
+        </div>
+      </ytd-video-preview>
+      <video id="reused-video"></video>
+    `)
+  }));
+  await page.goto("https://www.youtube.com/pip-preview-test");
+
+  const buttons = page.locator("#video-pip-shortcut-root")
+    .locator("[data-testid='video-pip-button']");
+  await expect(buttons).toHaveCount(2);
+
+  await page.evaluate(() => {
+    document.querySelector("#preview").append(document.querySelector("#reused-video"));
+  });
+  await expect(buttons).toHaveCount(1);
+
+  await page.locator("#preview-video").hover();
+  await expect(buttons).toHaveCount(1);
+  await page.close();
+});
+
 test("reveals the overlay on video hover without allowing page CSS to hide it", async () => {
   const page = await browserContext.newPage();
   await page.goto(`${fixtureUrl}/`);

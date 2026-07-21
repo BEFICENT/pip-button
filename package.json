@@ -1,6 +1,6 @@
 {
   "name": "video-pip-shortcut",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "private": true,
   "description": "Development checks for the cross-browser Video PiP Shortcut extension.",
   "scripts": {

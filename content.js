@@ -104,6 +104,16 @@
       !video.disablePictureInPicture;
   }
 
+  function isYouTubePreviewVideo(video) {
+    const hostname = location.hostname;
+    const isYouTube = hostname === "youtube.com" || hostname.endsWith(".youtube.com");
+    return isYouTube && Boolean(video.closest("ytd-video-preview, #inline-preview-player"));
+  }
+
+  function isEligibleVideo(video) {
+    return !isYouTubePreviewVideo(video) && isPictureInPictureAvailable(video);
+  }
+
   function getVisibleRect(video) {
     if (!video.isConnected || video.getClientRects().length === 0) return null;
 
@@ -188,10 +198,18 @@
       return;
     }
 
+    // YouTube keeps hover-preview players connected while navigating between
+    // its list and watch views. Remove their overlays even when the underlying
+    // video node survives the single-page navigation.
+    if (isYouTubePreviewVideo(video)) {
+      removeOverlay(video);
+      return;
+    }
+
     const visibleRect = getVisibleRect(video);
     const eligible = Boolean(visibleRect) &&
       !document.fullscreenElement &&
-      isPictureInPictureAvailable(video);
+      isEligibleVideo(video);
 
     if (!eligible) {
       record.pointerOverVideo = false;
@@ -266,7 +284,7 @@
   }
 
   function addOverlay(video) {
-    if (!cfg.buttonEnabled || overlays.has(video)) return;
+    if (!cfg.buttonEnabled || overlays.has(video) || isYouTubePreviewVideo(video)) return;
     ensureOverlayRoot();
 
     const button = document.createElement("button");
@@ -414,7 +432,7 @@
 
   function videoScore(video) {
     const rect = getVisibleRect(video);
-    if (!rect || !isPictureInPictureAvailable(video)) return -1;
+    if (!rect || !isEligibleVideo(video)) return -1;
     const playingBonus = !video.paused && !video.ended ? 1_000_000_000 : 0;
     return playingBonus + rect.width * rect.height;
   }

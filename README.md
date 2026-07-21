@@ -1,20 +1,20 @@
-# Video PiP Shortcut — v 1.12
+# Video PiP Shortcut — v 1.13
 The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chromium and Firefox-based desktop browsers.
 
-> **Firefox compatibility update**
-> v1.12 adds desktop Firefox/Gecko support while preserving the Chromium build.
+> **YouTube preview fix**
+> v1.13 ignores YouTube hover-preview videos and cleans up their overlays during in-page navigation.
 
 ---
 
-## 🚀 What’s new in v 1.12
+## 🚀 What’s new in v 1.13
 
 | Area | Added / Changed |
 |------|-----------------|
-| **Firefox support** | Supports desktop Firefox and Firefox-based browsers using Gecko 153 or newer |
-| **One package** | The same release ZIP is valid for Chromium development installs and Mozilla signing |
-| **Privacy declaration** | Declares no data collection using Firefox's built-in manifest disclosure |
-| **Icons** | Adds correctly sized 16, 32, and 48 pixel browser icons instead of relying on browser scaling |
-| **Quality** | Adds Firefox-engine coverage and Mozilla add-on linting alongside the Chromium and live YouTube suites |
+| **YouTube previews** | Suppresses the PiP button on hover-preview videos in YouTube lists and search results |
+| **Navigation cleanup** | Removes stale preview overlays when YouTube reuses video elements during in-page navigation |
+| **Keyboard shortcut** | Excludes YouTube previews when selecting the best video for the configured shortcut |
+| **Cross-browser copy** | Uses browser-neutral settings text for Chromium and Firefox users |
+| **Quality** | Adds deterministic coverage for persistent YouTube preview players |
 
 ---
 
@@ -27,7 +27,7 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chromium 
 * **Three hover styles** (show on hover, fade, always)
 * **Custom shortcut** – pick any key + modifiers  
 * **Click animation** (can be turned off)  
-* All settings **sync via Chrome Sync** and update live across tabs
+* All settings **sync via browser storage** and update live across tabs
 
 ---
 
