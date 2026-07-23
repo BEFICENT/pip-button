@@ -44,11 +44,13 @@ The simplest way to pop any HTML5 video into Picture‑in‑Picture on Chromium 
 
 Install [Video PiP Shortcut from the Chrome Web Store](https://chromewebstore.google.com/detail/video-pip-shortcut/fichfjcindepopbfmbgkgnfogknlpgld) for automatic updates.
 
-### Firefox and Firefox-based browsers
+### Firefox Browser Add-ons
+
+Install [Video PiP Shortcut from Firefox Browser Add-ons](https://addons.mozilla.org/en-US/firefox/addon/video-pip-shortcut/) for a Mozilla-reviewed installation and automatic updates.
 
 Firefox support requires **Firefox/Gecko 153 or newer**, where Mozilla first exposed the standard scripted video Picture-in-Picture API on desktop. Firefox-based browsers must incorporate that Gecko version before the extension can trigger PiP.
 
-For development builds, use a Firefox-compatible release ZIP (**v1.12 or newer**), open **about:debugging**, choose **This Firefox**, click **Load Temporary Add-on**, and select the ZIP. Temporary add-ons are removed when Firefox restarts. Permanent installation in standard Firefox requires a Mozilla-signed package; the same release ZIP is prepared for submission to addons.mozilla.org.
+For development builds, use a Firefox-compatible release ZIP (**v1.12 or newer**), open **about:debugging**, choose **This Firefox**, click **Load Temporary Add-on**, and select the ZIP. Temporary add-ons are removed when Firefox restarts.
 
 ### GitHub release
 
